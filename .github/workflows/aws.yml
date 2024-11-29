@@ -55,10 +55,10 @@ jobs:
 
         # Lancer une instance EC2 Ubuntu dans le sous-réseau public avec NGINX préinstallé
         INSTANCE_ID=$(aws ec2 run-instances \
-          --image-id ami-06258b3c86f01e8aa \  # Remplacez par l'AMI Ubuntu pour votre région
+          --image-id ami-083ac04a8442d4b7f  
           --count 1 \
           --instance-type t2.micro \
-          --key-name linuxkeypair  # Remplacez par votre clé SSH
+          --key-name linuxkeypair \
           --security-group-ids $SECURITY_GROUP_ID \
           --subnet-id ${{ env.PUBLIC_SUBNET_ID }} \
           --user-data file://nginx-install.sh \
