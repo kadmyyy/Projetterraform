@@ -1,0 +1,30 @@
+name: Deploy Infrastructure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout le code
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Setup Terraform
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    # Terraform Init pour initialiser le répertoire
+    - name: Terraform Init
+      run: terraform init
+
+    # Terraform Plan pour voir les changements qui vont être appliqués
+    - name: Terraform Plan
+      run: terraform plan
+
+    # Appliquer les changements Terraform (création des ressources)
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
